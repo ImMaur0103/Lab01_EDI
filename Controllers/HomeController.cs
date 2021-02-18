@@ -20,6 +20,8 @@ namespace Lab01_EDI.Controllers
 
         public IActionResult Index()
         {
+            
+
             return View();
         }
 

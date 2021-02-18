@@ -7,6 +7,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
 {
     public class Buscar
     {
-        
+
+
     }
 }
