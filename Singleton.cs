@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lab01_EDI.Models;
+using Lab01_EDI.ListaDobleArtesanal;
 
 namespace Lab01_EDI
 {
     public class Singleton
     {
         private readonly static Singleton instance = new Singleton();
-        public ListaDobleArtesanal.ListaDoble<Jugador> listaDoble;
+        public ListaDoble<Jugador> listaDoble;
 
         private Singleton()
         {

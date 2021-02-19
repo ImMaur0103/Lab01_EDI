@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,11 +12,16 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
+using Lab01_EDI.ListaDobleArtesanal;
+
 
 namespace Lab01_EDI.Controllers
 {
+   
     public class HomeController : Controller
     {
+
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -46,13 +50,13 @@ namespace Lab01_EDI.Controllers
 
         public IActionResult Upload()
         {
-            return View();
+            return View(Singleton.Instance.listaDoble);
         }
 
         public IActionResult Search()
-        {
+         {
             // Muestra la tabla donde se encuentra el listado de jugadores
-            return View(Singleton.Instance.listaDoble);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -65,13 +69,12 @@ namespace Lab01_EDI.Controllers
 
         [HttpGet]
 
-        public IActionResult Upload(ListaDobleArtesanal.ListaDoble<Jugador> ListaJugador = null)
+        public IActionResult Upload(ListaDoble<Jugador> ListaJugador = null)
         {
-            ListaJugador = ListaJugador == null ? new ListaDobleArtesanal.ListaDoble<Jugador>() : ListaJugador;
+            ListaJugador = ListaJugador == null ? new  ListaDoble<Jugador>() : ListaJugador;
+            //Singleton.Instance.listaDoble = ListaJugador;
             return View(ListaJugador);
         }
-
-
 
 
         [HttpPost]
