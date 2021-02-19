@@ -72,24 +72,30 @@ namespace Lab01_EDI.Controllers
         public IActionResult Upload(ListaDoble<Jugador> ListaJugador = null)
         {
             ListaJugador = ListaJugador == null ? new  ListaDoble<Jugador>() : ListaJugador;
-            //Singleton.Instance.listaDoble = ListaJugador;
-            return View(ListaJugador);
+            Singleton.Instance.listaDoble = ListaJugador;
+            return View(Singleton.Instance.listaDoble);
         }
 
-
+         
         [HttpPost]
-        public  IActionResult Upload(IFormFile archivo, [FromServices] IHostingEnvironment hostingEnvironment)
+        public  IActionResult Upload(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
         {
-            string nombreArchivo = $"{hostingEnvironment.WebRootPath} { archivo.FileName}";
-            using (FileStream fileStream = System.IO.File.Create(nombreArchivo))  
+            string filename = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
+            using (FileStream fileStream = System.IO.File.Create(filename))  
             {
-                archivo.CopyTo(fileStream);
+                file.CopyTo(fileStream);
                 fileStream.Flush();
             }
 
-            //ListaDobleArtesanal.ListaDoble<Jugador> ListaJugadores = new ListaDobleArtesanal.ListaDoble<Jugador>();
+            var jugadores = this.GetJugadoresList(file.FileName);
+            return Upload(jugadores);
+        }
 
-            var path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + nombreArchivo; // guarda archivo
+        private ListaDoble<Jugador> GetJugadoresList(string filename) 
+        {
+            ListaDoble<Jugador> jugadores = new ListaDoble<Jugador>();
+            
+            var path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + filename; // guarda archivo
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
@@ -98,18 +104,18 @@ namespace Lab01_EDI.Controllers
                 while (csv.Read())
                 {
                     var jugador = csv.GetRecord<Jugador>();
-                    Singleton.Instance.listaDoble.InsertarInicio(jugador);   
+                    jugadores.InsertarInicio(jugador);
                 }
             }
 
             path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\FilesTo"}";
             using (var write = new StreamWriter(path + "\\Archivo.csv"))
-            using(var csv = new CsvWriter(write, CultureInfo.InvariantCulture))
+            using (var csv = new CsvWriter(write, CultureInfo.InvariantCulture))
             {
-                csv.WriteRecords((System.Collections.IEnumerable)Singleton.Instance.listaDoble);
+                csv.WriteRecords(jugadores);
             }
 
-            return Upload(Singleton.Instance.listaDoble);
+            return jugadores; 
         }
     }
 }
