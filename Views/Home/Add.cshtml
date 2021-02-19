@@ -3,5 +3,39 @@
     ViewData["Title"] = "Add";
 }
 
-<h1>Add</h1>
+<h1> Agregar Jugador </h1>
+
+<form method="post">
+
+    <div class="form-floating mb-3">
+        <label for="floatingInput">Nombre</label>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">Apellido</label>
+        <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">Teléfono</label>
+        <input type="tel" class="form-control" name="posicion" placeholder="Teléfono">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">Salario</label>
+        <input type="tel" class="form-control" name="salario" placeholder="Salario">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">Club</label>
+        <input type="tel" class="form-control" name="club" placeholder="Club">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-primary">Agregar</button>
+    </div>
+
+
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+
+</form>
+
 

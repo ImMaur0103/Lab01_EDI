@@ -59,8 +59,20 @@ namespace Lab01_EDI.Controllers
             return View();
         }
 
-        public IActionResult Add()
+        public IActionResult Add(string nombre, string apellido, string posicion, int salario, string club)
         {
+            if((nombre != null) && (apellido!=null) && (posicion!=null) && (salario != 0) && (club != null))
+            {
+                Jugador nuevoJugador = new Jugador();
+                nuevoJugador.Nombre = nombre;
+                nuevoJugador.Apellido = apellido;
+                nuevoJugador.Posicion = posicion;
+                nuevoJugador.Salario = salario;
+                nuevoJugador.Club = club;
+                ViewBag.Mensaje = "Agregado";
+                Singleton.Instance.listaDoble.InsertarInicio(nuevoJugador);
+            
+            }
             return View();
         }
 
