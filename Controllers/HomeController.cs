@@ -18,9 +18,15 @@ namespace Lab01_EDI.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string option)
         {
-            
+            switch (option)
+            {
+                case "ListaArtesanal":
+                    break;
+                case "ListaC":
+                    break;
+            }
 
             return View();
         }
