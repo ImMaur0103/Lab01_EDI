@@ -7,7 +7,6 @@ namespace Lab01_EDI.ListaGenerica
 {
     public class LinkedList<T>
     {
-        LinkedList<string> mylist = new LinkedList<string>();
-        
+       
     }
 }

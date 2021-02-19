@@ -20,7 +20,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
 
         ~ListaDoble() { }
 
-        bool ListaVacia()
+        public bool ListaVacia()
         {
             return contador == 0;
         }
@@ -45,7 +45,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return;
         }
 
-        Nodo<T> ExtraerInicio()
+        public Nodo<T> ExtraerInicio()
         {
             Nodo<T> temporal = inicio;
 
@@ -62,7 +62,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return temporal;
         }
 
-        Nodo<T> ExtraerFinal()
+        public Nodo<T> ExtraerFinal()
         {
             Nodo<T> temporal = fin;
 
@@ -83,7 +83,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return temporal;
         }
 
-        Nodo<T> ExtraerEnPosicion(int posicion)
+        public Nodo<T> ExtraerEnPosicion(int posicion)
         {
             Nodo<T> temporal = inicio;
 
@@ -117,7 +117,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return temporal;
         }
 
-        T ObtenerValor(int posicion)
+        public T ObtenerValor(int posicion)
         {
             if (posicion >= 0 && posicion < contador)
             {

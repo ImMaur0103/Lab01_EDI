@@ -4,5 +4,13 @@
 }
 
 <h1>Upload</h1>
-<p>Use this page to detail your site's privacy policy.</p>
+
+<center> <h1 class="display-4">Cargar Datos</h1> </center>
+<center><p class="h4">Jugadores</p></center>
+
+<form asp-controller="Singleton.Instance.listaDoble" asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name=" file " />
+    <button type="submit"> Subir </button>
+
+</form>
 
