@@ -6,16 +6,24 @@
 
 <h1>Cargar Datos</h1>
 <center><p class="h4">Jugadores</p></center>
-
+<p></p>
 
 <form asp-controller="Home" asp-action="Upload" method="post" enctype="multipart/form-data">
-    <span>Select File: </span>
-    <input type="file" name="file" />
-    <button type="submit"> Subir </button>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Seleccione archivo csv.</label>
+        <input class="form-control" type="file" name="file" id="formfile">
+    </div>
+    <center> <button type="submit" class="btn btn-outline-primary">Subir</button> </center>
 </form>
 
 @if (Model.Count() > 0)
 {
+    <div>
+        <a asp-action="Add">Añadir Jugador...</a>
+    </div>
+
+
+<p>
     <table class="table" cellpadding="0" cellspacing="0">
         <thead class="table-dark">
             <tr>
@@ -33,11 +41,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Club)
-                </th>
-                <th>
-                    <form method="post">
-                        <button name="BotonOrdenar"><i class=" fas fa-sort-amount-up-alt"></i></button>
-                    </form>
                 </th>
             </tr>
         </thead>
@@ -63,5 +66,6 @@
                 </tr>
             }
         </tbody>
-     </table>
+    </table>
+</p>
 }

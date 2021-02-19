@@ -65,8 +65,6 @@ namespace Lab01_EDI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
-
         [HttpGet]
 
         public IActionResult Upload(ListaDoble<Jugador> ListaJugador = null)
@@ -88,13 +86,14 @@ namespace Lab01_EDI.Controllers
             }
 
             var jugadores = this.GetJugadoresList(file.FileName);
-            return Upload(jugadores);
+            Singleton.Instance.listaDoble = jugadores;
+            return Upload(Singleton.Instance.listaDoble);
         }
 
         private ListaDoble<Jugador> GetJugadoresList(string filename) 
         {
             ListaDoble<Jugador> jugadores = new ListaDoble<Jugador>();
-            
+         
             var path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + filename; // guarda archivo
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
