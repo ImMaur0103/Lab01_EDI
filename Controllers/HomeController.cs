@@ -71,7 +71,6 @@ namespace Lab01_EDI.Controllers
                 nuevoJugador.Club = club;
                 ViewBag.Mensaje = "Agregado";
                 Singleton.Instance.listaDoble.InsertarInicio(nuevoJugador);
-            
             }
             return View();
         }
