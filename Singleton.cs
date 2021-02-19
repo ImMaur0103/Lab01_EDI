@@ -7,14 +7,14 @@ using Lab01_EDI.ListaDobleArtesanal;
 
 namespace Lab01_EDI
 {
-    public class Singleton
+    public sealed class Singleton
     {
         private readonly static Singleton instance = new Singleton();
         public ListaDoble<Jugador> listaDoble;
 
         private Singleton()
         {
-            listaDoble = new ListaDobleArtesanal.ListaDoble<Jugador>();
+            listaDoble = new ListaDoble<Jugador>();
         }
 
         public static Singleton Instance

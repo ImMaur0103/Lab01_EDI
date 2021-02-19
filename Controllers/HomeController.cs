@@ -54,9 +54,8 @@ namespace Lab01_EDI.Controllers
         }
 
         public IActionResult Search()
-         {
-            // Muestra la tabla donde se encuentra el listado de jugadores
-            return View();
+        {
+            return View(Singleton.Instance.listaDoble);
         }
 
         public IActionResult Add(string nombre, string apellido, string posicion, int salario, string club)
@@ -91,7 +90,6 @@ namespace Lab01_EDI.Controllers
             Singleton.Instance.listaDoble = ListaJugador;
             return View(Singleton.Instance.listaDoble);
         }
-
          
         [HttpPost]
         public  IActionResult Upload(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
@@ -104,8 +102,9 @@ namespace Lab01_EDI.Controllers
             }
 
             var jugadores = this.GetJugadoresList(file.FileName);
-            Singleton.Instance.listaDoble = jugadores;
-            return Upload(Singleton.Instance.listaDoble);
+            //Singleton.Instance.listaDoble = jugadores;
+            //return Upload(Singleton.Instance.listaDoble);
+            return Upload(jugadores);
         }
 
         private ListaDoble<Jugador> GetJugadoresList(string filename) 
