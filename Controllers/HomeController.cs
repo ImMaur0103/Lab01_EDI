@@ -155,15 +155,28 @@ namespace Lab01_EDI.Controllers
 
         public IActionResult EliminarJugador(string Nombre, string Apellido, string Posicion, string Salario, string Club)
         {
-            for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
+            if (Singleton.Instance.ListaArtesanalActiva)
             {
-                if (Nombre == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Nombre) && Apellido == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Apellido) && Posicion == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Posicion) && Salario == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Salario) && Club == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Club))
+                for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
                 {
-                    Singleton.Instance.listaDoble.ExtraerEnPosicion(i);
-                    break;
+                    if (Nombre == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Nombre) && Apellido == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Apellido) && Posicion == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Posicion) && Salario == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Salario) && Club == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Club))
+                    {
+                        Singleton.Instance.listaDoble.ExtraerEnPosicion(i);
+                        break;
+                    }
                 }
             }
-
+            else
+            {
+                for (int i = 0; i < Singleton.Instance.ListaCSharp.Count; i++)
+                {
+                    if (Nombre == Convert.ToString(Singleton.Instance.ListaCSharp[i].Nombre) && Apellido == Convert.ToString(Singleton.Instance.ListaCSharp[i].Apellido) && Posicion == Convert.ToString(Singleton.Instance.ListaCSharp[i].Posicion) && Salario == Convert.ToString(Singleton.Instance.ListaCSharp[i].Salario) && Club == Convert.ToString(Singleton.Instance.ListaCSharp[i].Club))
+                    {
+                        Singleton.Instance.listaDoble.ExtraerEnPosicion(i);
+                        break;
+                    }
+                }
+            }
             return View("Privacy");
         }
 
