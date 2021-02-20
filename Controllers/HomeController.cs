@@ -48,9 +48,9 @@ namespace Lab01_EDI.Controllers
             return View();
         }
 
-        public IActionResult Upload()
+        public IActionResult Upload(string option)
         {
-            return View(Singleton.Instance.listaDoble);
+            return View();
         }
 
         public IActionResult Search()
@@ -58,7 +58,7 @@ namespace Lab01_EDI.Controllers
             return View(Singleton.Instance.listaDoble);
         }
 
-        public IActionResult Add(string nombre, string apellido, string posicion, int salario, string club)
+        public IActionResult Add(string nombre, string apellido, string posicion, int salario, string club, string option)
         {
             if((nombre != null) && (apellido!=null) && (posicion!=null) && (salario != 0) && (club != null))
             {
@@ -74,8 +74,6 @@ namespace Lab01_EDI.Controllers
             return View();
         }
 
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -87,10 +85,10 @@ namespace Lab01_EDI.Controllers
         public IActionResult Upload(ListaDoble<Jugador> ListaJugador = null)
         {
             ListaJugador = ListaJugador == null ? new  ListaDoble<Jugador>() : ListaJugador;
-            Singleton.Instance.listaDoble = ListaJugador;
-            return View(Singleton.Instance.listaDoble);
+            Singleton.Instance.listaDoble = ListaJugador; //es funcional            
+            return View(Singleton.Instance.listaDoble); // es funcional 
         }
-         
+    
         [HttpPost]
         public  IActionResult Upload(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
         {

@@ -10,7 +10,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
     {
         private Nodo<T> inicio = new Nodo<T>();
         private Nodo<T> fin = new Nodo<T>();
-        int contador;
+        public int contador;
 
         public ListaDoble()
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lab01_EDI.Models.Jugador> 
+﻿@model IEnumerable<Lab01_EDI.Models.Jugador>
 
 @{
     ViewData["Title"] = "Upload";
@@ -20,51 +20,62 @@
     <a asp-action="Add">Añadir Jugador...</a>
 </div>
 
+
 @if (Model.Count() > 0)
 {
+    <p> Vista Previa archivo: </p>
+
     <p>
-    <table class="table" cellpadding="0" cellspacing="0">
-        <thead class="table-dark">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Posicion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Salario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Club)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <table class="table" cellpadding="0" cellspacing="0">
+            <thead class="table-dark">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Apellido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Posicion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Salario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Club)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Apellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Posicion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Salario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Club)
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</p>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Posicion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Club)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </p>
+
+    //Debe dirigise a la vista Search
+    <div class="d-grid gap-2">
+        <center>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Search", "Home")'" input name="option" type="button">Buscar jugador</button>
+        </center>
+    </div>
+
 }
