@@ -151,17 +151,63 @@ namespace Lab01_EDI.Controllers
             return View("Privacy");
         }
 
-        public int Editar(string Nombre, string Apellido, string Posicion, string Salario, string Club)
+        public IActionResult Editar(string Nombre, string Apellido, string Posicion, string Salario, string Club)
         {
             for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
             {
                 if (Nombre == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Nombre) && Apellido == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Apellido) && Posicion == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Posicion) && Salario == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Salario) && Club == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Club))
                 {
-                    Singleton.Instance.listaDoble.ExtraerEnPosicion(i);
+                    Singleton.Instance.listaDoble.PosEditar = i;
+                    Singleton.Instance.listaDoble.Editar = true;
+                    return View("Privacy");
                 }
             }
 
-            return 0;
+            return View("Privacy");
+        }
+        [HttpPost]
+        public IActionResult GuardarEdicion(string nombre, string apellido, string posicion, int salario, string club)
+        {
+            Singleton.Instance.listaDoble.Editar = false;
+            Jugador nuevoJugador = new Jugador();
+            try
+            {
+                if (nombre == null)
+                    nuevoJugador.Nombre = Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(Singleton.Instance.listaDoble.PosEditar).Nombre);
+                else
+                    nuevoJugador.Nombre = nombre;
+
+
+                if (apellido == null)
+                    nuevoJugador.Apellido = Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(Singleton.Instance.listaDoble.PosEditar).Apellido);
+                else
+                    nuevoJugador.Apellido = apellido;
+
+
+                if (posicion == null)
+                    nuevoJugador.Posicion = Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(Singleton.Instance.listaDoble.PosEditar).Posicion);
+                else
+                    nuevoJugador.Posicion = posicion;
+
+
+                if (salario == 0)
+                    nuevoJugador.Salario = Convert.ToInt16(Singleton.Instance.listaDoble.ObtenerValor(Singleton.Instance.listaDoble.PosEditar).Salario);
+                else
+                    nuevoJugador.Salario = salario;
+
+
+                if (club == null)
+                    nuevoJugador.Club = Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(Singleton.Instance.listaDoble.PosEditar).Club);
+                else
+                    nuevoJugador.Club = club;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            Singleton.Instance.listaDoble.CambiarEnPosicion(Singleton.Instance.listaDoble.PosEditar, nuevoJugador);
+            return View("Privacy");
         }
     }
 }

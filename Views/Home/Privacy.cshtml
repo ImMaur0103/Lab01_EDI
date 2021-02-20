@@ -29,34 +29,64 @@
     </thead>
     @if (Singleton.Instance.listaDoble.contador > 0)
     {
-        
+
         <tbody>
-            @for (int i = 0; i < Singleton.Instance.listaDoble.contador;i++)
+            @for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "EliminarJugador", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Editar", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "EliminarJugador", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Editar", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                    </td>
+                </tr>
             }
         </tbody>
     }
 </table>
+
+@if (Singleton.Instance.listaDoble.Editar)
+{
+    <form method="post">
+
+        <div class="form-floating mb-3">
+            <label for="floatingInput">Nombre</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Apellido</label>
+            <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Posición</label>
+            <input type="tel" class="form-control" name="posicion" placeholder="Posición">
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Salario</label>
+            <input type="tel" class="form-control" name="salario" placeholder="Salario">
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Club</label>
+            <input type="tel" class="form-control" name="club" placeholder="Club">
+        </div>
+        <div>
+            <button class="btn btn-outline-primary" asp-action="GuardarEdicion">Agregar</button>
+        </div>
+    </form>
+}
