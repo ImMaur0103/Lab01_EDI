@@ -1,6 +1,54 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model IEnumerable<Lab01_EDI.Models.Jugador>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+    ViewData["Title"] = "Tablas";
+}
+
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posicion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club)
+            </th>
+        </tr>
+    </thead>
+    @if (Singleton.Instance.listaDoble.contador > 0)
+    {
+        
+        <tbody>
+            @for (int i = 0; i < Singleton.Instance.listaDoble.contador;i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>

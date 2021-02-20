@@ -129,6 +129,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
                 while (ubicacion < posicion)
                 {
                     temporal = temporal.Siguiente;
+                    ubicacion++;
                 }
                 return temporal.Valor;
             }
