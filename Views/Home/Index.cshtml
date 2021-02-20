@@ -5,7 +5,24 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Seleccione estructura de datos a utilizar</h1>
+    @if (!Singleton.Instance.CSharpListaActiva && !Singleton.Instance.ListaArtesanalActiva)
+    {
+        <h1 class="display-4">Seleccione estructura de datos a utilizar</h1>
+    }
+    else
+    {
+
+        <h1 class="display-4">Cambie a la estructura de datos que desee utilizar</h1>
+    }
+
+    @if (Singleton.Instance.CSharpListaActiva)
+    {
+        <p class="alert-link">Usted esta utilizando listas de C#</p>
+    }
+    else if (Singleton.Instance.ListaArtesanalActiva)
+    {
+        <p class="alert-link">Usted esta utilizando listas creadas por Mauricio y Andrea</p>
+    }
     <form method="post">
         <div class="d-grid gap-2">
             <button class="btn btn-outline-primary" asp-action="CambioEstructuraArtesanal">Lista Artesanal</button>

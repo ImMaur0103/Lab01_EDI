@@ -9,23 +9,42 @@
 <p></p>
 
 
-<table class="table">
+<link href="~/css/all.min.css" rel="stylesheet" />
+
+
+<table class="table" align="left">
+
     <thead class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                <form method="post">
+                    @Html.DisplayNameFor(model => model.Nombre)
+                    <button class="btn btn-outline-primary" asp-action="OrdenarNombre"><i class="fas fa-sort-alpha-down"></i></button>
+                </form>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                <form method="post">
+                    @Html.DisplayNameFor(model => model.Apellido)
+                    <button class="btn btn-outline-primary" asp-action="OrdenarApellido"><i class="fas fa-sort-alpha-down"></i></button>
+                </form>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Posicion)
-            </th>
+                <form method="post">
+                    @Html.DisplayNameFor(model => model.Posicion)
+                    <button class="btn btn-outline-primary" asp-action="OrdenarPosicion"><i class="fas fa-sort-amount-down-alt"></i></button>
+                </form>
+                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Salario)
+                <form method="post">
+                    @Html.DisplayNameFor(model => model.Salario)
+                    <button class="btn btn-outline-primary" asp-action="OrdenarSalario"><i class="fas fa-sort-numeric-down-alt"></i></button>
+                </form>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Club)
+                <th>
+                    <form method="post">
+                        @Html.DisplayNameFor(model => model.Club)
+                        <button class="btn btn-outline-primary" asp-action="OrdenarClub"><i class="fas fa-sort-amount-down-alt"></i></button>
+                    </form>
             </th>
         </tr>
     </thead>
@@ -51,12 +70,48 @@
                     <td>
                         @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
                     </td>
+                    <td>
+                        @Html.ActionLink("Delete", "EliminarJugador", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Editar", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    @if (Singleton.Instance.ListaCSharp.Count > 0)
+    {
+
+        <tbody>
+            @for (int i = 0; i < Singleton.Instance.ListaCSharp.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Posicion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Club)
+                    </td>
                 </tr>
             }
         </tbody>
     }
 </table>
 
+<Div>
+    <button name="BotonBuscar" asp-action="Search"><i class=" fas fa-searchfas fa-search"></i></button>
+    <input type="text" class="show" name="Buscador" placeholder="Buscar" />
+</Div>
 
 <div>
     <a asp-action="Upload">Regresar</a>

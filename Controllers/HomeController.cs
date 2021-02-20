@@ -74,7 +74,8 @@ namespace Lab01_EDI.Controllers
 
         public IActionResult Search()
         {
-            return View(Singleton.Instance.listaDoble);
+
+            return View();
         }
 
 
@@ -93,7 +94,11 @@ namespace Lab01_EDI.Controllers
                 if (Singleton.Instance.ListaArtesanalActiva)
                     Singleton.Instance.listaDoble = ListaJugador; //es funcional   
                 else
+                {
                     Singleton.Instance.ListaCSharp = ListaJugador.ToList();
+                    Singleton.Instance.CSharpListaActiva = true;
+                }
+                    
             }         
             return View(Singleton.Instance.listaDoble); // es funcional 
         }
@@ -111,10 +116,9 @@ namespace Lab01_EDI.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (IOException e)
             {
 
-                throw;
             }
             var jugadores = this.GetJugadoresList(file.FileName);
             //Singleton.Instance.listaDoble = jugadores;
@@ -318,6 +322,47 @@ namespace Lab01_EDI.Controllers
             }
             ViewBag.Mensaje = "Actualizado";
             return View("Index");
+        }
+        
+        public IActionResult OrdenarNombre()
+        {
+            if (Singleton.Instance.CSharpListaActiva)
+            {
+                Singleton.Instance.ListaCSharp.OrderByDescending(Jugador => Jugador.Nombre);
+            }
+            return View("Search");
+        }
+        public IActionResult OrdenarApellido()
+        {
+            if (Singleton.Instance.CSharpListaActiva)
+            {
+                Singleton.Instance.ListaCSharp.OrderByDescending(Jugador => Jugador.Apellido);
+            }
+            return View("Search");
+        }
+        public IActionResult OrdenarPosicion()
+        {
+            if (Singleton.Instance.CSharpListaActiva)
+            {
+                Singleton.Instance.ListaCSharp.OrderByDescending(Jugador => Jugador.Posicion);
+            }
+            return View("Search");
+        }
+        public IActionResult OrdenarSalario()
+        {
+            if (Singleton.Instance.CSharpListaActiva)
+            {
+                Singleton.Instance.ListaCSharp.OrderByDescending(Jugador => Jugador.Salario);
+            }
+            return View("Search");
+        }
+        public IActionResult OrdenarClub()
+        {
+            if (Singleton.Instance.CSharpListaActiva)
+            {
+                Singleton.Instance.ListaCSharp.OrderByDescending(Jugador => Jugador.Club);
+            }
+            return View("Search");
         }
     }
 }
