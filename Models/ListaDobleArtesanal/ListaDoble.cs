@@ -56,7 +56,8 @@ namespace Lab01_EDI.ListaDobleArtesanal
             if (!ListaVacia())
             {
                 inicio = inicio.Siguiente;
-                inicio.Anterior = null;
+                if(inicio != null)
+                    inicio.Anterior = null;
                 if (contador == 1)
                 {
                     fin = inicio;

@@ -63,7 +63,10 @@ namespace Lab01_EDI.Controllers
                 nuevoJugador.Posicion = posicion;
                 nuevoJugador.Salario = salario;
                 nuevoJugador.Club = club;
-                Singleton.Instance.listaDoble.InsertarInicio(nuevoJugador);
+                if (Singleton.Instance.CSharpListaActiva)
+                    Singleton.Instance.ListaCSharp.Add(nuevoJugador);
+                else
+                    Singleton.Instance.listaDoble.InsertarInicio(nuevoJugador);
                 ViewBag.Mensaje = "Agregado";
             }
             return View();
@@ -93,13 +96,21 @@ namespace Lab01_EDI.Controllers
         [HttpPost]
         public  IActionResult Upload(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
         {
-            string filename = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
-            using (FileStream fileStream = System.IO.File.Create(filename))  
+            try
             {
-                file.CopyTo(fileStream);
-                fileStream.Flush();
-            }
+                string filename = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
+                using (FileStream fileStream = System.IO.File.Create(filename))
+                {
+                    file.CopyTo(fileStream);
+                    fileStream.Flush();
+                }
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             var jugadores = this.GetJugadoresList(file.FileName);
             //Singleton.Instance.listaDoble = jugadores;
             //return Upload(Singleton.Instance.listaDoble);
@@ -208,6 +219,36 @@ namespace Lab01_EDI.Controllers
 
             Singleton.Instance.listaDoble.CambiarEnPosicion(Singleton.Instance.listaDoble.PosEditar, nuevoJugador);
             return View("Privacy");
+        }
+
+        public IActionResult CambioEstructuraArtesanal()
+        {
+            if (Singleton.Instance.CSharpListaActiva && Singleton.Instance.ListaCSharp.Count != 0)
+            {
+                Singleton.Instance.CambioEstructura();
+            }
+            else
+            {
+                Singleton.Instance.ListaArtesanalActiva = true;
+                Singleton.Instance.CSharpListaActiva = false;
+            }
+            ViewBag.Mensaje = "Actualizado";
+            return View("Index");
+        }
+
+        public IActionResult CambioEstructuraCsharp()
+        {
+            if (Singleton.Instance.ListaArtesanalActiva && Singleton.Instance.listaDoble.contador != 0)
+            {
+                Singleton.Instance.CambioEstructura();
+            }
+            else
+            {
+                Singleton.Instance.CSharpListaActiva = true;
+                Singleton.Instance.ListaArtesanalActiva = false;
+            }
+            ViewBag.Mensaje = "Actualizado";
+            return View("Index");
         }
     }
 }

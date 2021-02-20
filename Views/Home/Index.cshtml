@@ -6,9 +6,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Seleccione estructura de datos a utilizar</h1>
-    <div class="d-grid gap-2">
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("Upload", "Home")'" input name="option" type="button" id=" ListaArtesanal">Lista Artesanal</button>
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("Search", "Home")'" input name="option" type="button" id=" ListaC">Lista c#</button>
-    </div>
-
+    <form method="post">
+        <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary" asp-action="CambioEstructuraArtesanal">Lista Artesanal</button>
+            <button class="btn btn-outline-primary" asp-action="CambioEstructuraCsharp">Lista c#</button>
+        </div>
+    </form>
+    <Div>
+        <center><h5 class="text-primary"> @ViewBag.Mensaje </h5></center>
+    </Div>
 </div>
