@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lab01_EDI.Models;
 
 namespace Lab01_EDI.ListaDobleArtesanal
 {
@@ -136,7 +137,6 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return default(T);
         }
 
-        
         public IEnumerator<T> GetEnumerator()
         {
             Nodo<T> nodo = inicio;

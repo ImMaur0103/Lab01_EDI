@@ -10,7 +10,11 @@ namespace Lab01_EDI.Extra
 
     public class Buscar
     {
+        /*public delegate void Busqueda(IEnumerable<Jugador> jugador, string buscar, int contador);
+
         ListaDoble<Jugador> ListaAux = new ListaDoble<Jugador>();
+
+        ListaDoble<Jugador> BusquedaNombre = new Busqueda(BuscarNombre);
 
         public void BuscarNombre(IEnumerable<Jugador> jugador, string nombre, int contador)
         {
@@ -97,5 +101,5 @@ namespace Lab01_EDI.Extra
                     break;
             }
         }
-    }
+    }*/
 }
