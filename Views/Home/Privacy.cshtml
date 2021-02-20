@@ -23,6 +23,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Club)
             </th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     @if (Singleton.Instance.listaDoble.contador > 0)
@@ -31,23 +33,29 @@
         <tbody>
             @for (int i = 0; i < Singleton.Instance.listaDoble.contador;i++)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "EliminarJugador", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Editar", "Home", new { Nombre = Singleton.Instance.listaDoble.ObtenerValor(i).Nombre, Apellido = Singleton.Instance.listaDoble.ObtenerValor(i).Apellido, Posicion = Singleton.Instance.listaDoble.ObtenerValor(i).Posicion, Salario = Singleton.Instance.listaDoble.ObtenerValor(i).Salario, Club = Singleton.Instance.listaDoble.ObtenerValor(i).Club }, null)
+                </td>
+            </tr>
             }
         </tbody>
     }

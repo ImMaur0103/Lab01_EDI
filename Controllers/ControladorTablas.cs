@@ -9,79 +9,18 @@ namespace Lab01_EDI.Controllers
 {
     public class ControladorTablas : Controller
     {
-        // GET: ControladorTablas
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        // GET: ControladorTablas/Details/5
-        public ActionResult Details(int id)
+        public int Editar(string Nombre, string Apellido, string Posicion, string Salario, string Club)
         {
-            return View();
-        }
-
-        // GET: ControladorTablas/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ControladorTablas/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
             {
-                return RedirectToAction(nameof(Index));
+                if (Nombre == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Nombre) && Apellido == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Apellido) && Posicion == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Posicion) && Salario == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Salario) && Club == Convert.ToString(Singleton.Instance.listaDoble.ObtenerValor(i).Club))
+                {
+                    Singleton.Instance.listaDoble.ExtraerEnPosicion(i);
+                }
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: ControladorTablas/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ControladorTablas/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ControladorTablas/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ControladorTablas/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return 0;
         }
     }
 }

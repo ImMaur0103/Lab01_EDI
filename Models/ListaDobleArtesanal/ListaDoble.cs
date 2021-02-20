@@ -90,24 +90,25 @@ namespace Lab01_EDI.ListaDobleArtesanal
 
             if (!ListaVacia())
             {
-                if ((contador == 1) && (posicion == 0))
+                if ((contador == 1) || (posicion == 0))
                 {
                     return ExtraerInicio();
                 }
                 else
                 {
-                    if (posicion >= contador)
+                    if (posicion == contador-1)
                     {
                         return ExtraerFinal();
                     }
                     else
                     {
                         Nodo<T> auxiliar = inicio;
-                        int pos = 1;
+                        int pos = 0;
 
                         while ((pos < posicion))
                         {
                             auxiliar = auxiliar.Siguiente;
+                            pos++;
                         }
                         auxiliar.Anterior.Siguiente = auxiliar.Siguiente;
                         auxiliar.Siguiente.Anterior = auxiliar.Anterior;
