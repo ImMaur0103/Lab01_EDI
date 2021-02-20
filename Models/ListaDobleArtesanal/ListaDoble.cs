@@ -12,6 +12,8 @@ namespace Lab01_EDI.ListaDobleArtesanal
         public Nodo<T> inicio = new Nodo<T>();
         private Nodo<T> fin = new Nodo<T>();
         public int contador;
+        public bool Editar;
+        public int PosEditar;
 
         public ListaDoble()
         {
@@ -91,24 +93,25 @@ namespace Lab01_EDI.ListaDobleArtesanal
 
             if (!ListaVacia())
             {
-                if ((contador == 1) && (posicion == 0))
+                if ((contador == 1) || (posicion == 0))
                 {
                     return ExtraerInicio();
                 }
                 else
                 {
-                    if (posicion >= contador)
+                    if (posicion == contador-1)
                     {
                         return ExtraerFinal();
                     }
                     else
                     {
                         Nodo<T> auxiliar = inicio;
-                        int pos = 1;
+                        int pos = 0;
 
                         while ((pos < posicion))
                         {
                             auxiliar = auxiliar.Siguiente;
+                            pos++;
                         }
                         auxiliar.Anterior.Siguiente = auxiliar.Siguiente;
                         auxiliar.Siguiente.Anterior = auxiliar.Anterior;
@@ -119,6 +122,35 @@ namespace Lab01_EDI.ListaDobleArtesanal
             return temporal;
         }
 
+        public void CambiarEnPosicion(int posicion, T NuevoValor)
+        {
+            if (!ListaVacia())
+            {
+                if ((contador == 1) || (posicion == 0))
+                {
+                    inicio.Valor = NuevoValor;
+                }
+                else
+                {
+                    if (posicion == contador - 1)
+                    {
+                        fin.Valor = NuevoValor;
+                    }
+                    else
+                    {
+                        Nodo<T> auxiliar = inicio;
+                        int pos = 0;
+
+                        while ((pos < posicion))
+                        {
+                            auxiliar = auxiliar.Siguiente;
+                            pos++;
+                        }
+                        auxiliar.Valor = NuevoValor;
+                    }
+                }
+            }
+        }
         public T ObtenerValor(int posicion)
         {
             if (posicion >= 0 && posicion < contador)
