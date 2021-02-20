@@ -10,22 +10,91 @@ namespace Lab01_EDI.Extra
 
     public class Buscar
     {
-        static ListaDoble<Jugador> ListaAux = new ListaDoble<Jugador>();
+        ListaDoble<Jugador> ListaAux = new ListaDoble<Jugador>();
 
-        public void BuscarElemento(string OBuscar, ListaDoble<Jugador> JugadorLista)
+        public void BuscarNombre(IEnumerable<Jugador> jugador, string nombre, int contador)
         {
-            int contador = JugadorLista.contador;
+            nombre = nombre.ToLower();
 
             for (int i = 0; i < contador; i++)
             {
-                Jugador jugador = new Jugador();
-                jugador = JugadorLista.ObtenerValor(i);
-                
-
-                if (jugador.Nombre == OBuscar)
+                if(jugador.ElementAt(i).Nombre == nombre)
                 {
-                    ListaAux.InsertarInicio(jugador);
+                    ListaAux.InsertarInicio(jugador.ElementAt(i));
                 }
+            }
+        }
+
+        public void BuscarApellido(IEnumerable<Jugador> jugador, string apellido, int contador)
+        {
+            apellido.ToLower();
+
+            for (int i = 0; i < contador; i++)
+            {
+                if (jugador.ElementAt(i).Apellido == apellido)
+                {
+                    ListaAux.InsertarInicio(jugador.ElementAt(i));
+                }
+            }
+        }
+
+        public void BuscarPosicion(IEnumerable<Jugador> jugador, string posicion, int contador)
+        {
+            posicion.ToLower();
+
+            for (int i = 0; i < contador; i++)
+            {
+                if (jugador.ElementAt(i).Posicion == posicion)
+                {
+                    ListaAux.InsertarInicio(jugador.ElementAt(i));
+                }
+            }
+        }
+
+        public void BuscarClub(IEnumerable<Jugador> jugador, string Club, int contador)
+        {
+            Club.ToLower();
+
+            for (int i = 0; i < contador; i++)
+            {
+                if (jugador.ElementAt(i).Club == Club)
+                {
+                    ListaAux.InsertarInicio(jugador.ElementAt(i));
+                }
+            }
+        }
+
+        public void BuscarSalario(IEnumerable<Jugador> jugador, int salario, string opcion, int contador)
+        {
+            switch (opcion)
+            {
+                case "menor":
+                    for (int i = 0; i < contador; i++)
+                    {
+                        if (jugador.ElementAt(i).Salario < salario)
+                        {
+                            ListaAux.InsertarInicio(jugador.ElementAt(i));
+                        }
+                    }
+                    break;
+                case "mayor":
+                    for (int i = 0; i < contador; i++)
+                    {
+                        if (jugador.ElementAt(i).Salario > salario)
+                        {
+                            ListaAux.InsertarInicio(jugador.ElementAt(i));
+                        }
+                    }
+                    break;
+                case "igual":
+                    for (int i = 0; i < contador; i++)
+                    {
+                        if (jugador.ElementAt(i).Salario == salario)
+                        {
+                            ListaAux.InsertarInicio(jugador.ElementAt(i));
+                        }
+                    }
+                    break;
             }
         }
     }
