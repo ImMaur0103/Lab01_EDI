@@ -98,6 +98,4 @@ namespace Lab01_EDI.Extra
             }
         }
     }
-
-   
 }
