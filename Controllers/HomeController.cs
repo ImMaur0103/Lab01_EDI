@@ -53,11 +53,6 @@ namespace Lab01_EDI.Controllers
             return View();
         }
 
-        public IActionResult Search()
-        {
-            return View(Singleton.Instance.listaDoble);
-        }
-
         public IActionResult Add(string nombre, string apellido, string posicion, int salario, string club, string option)
         {
             if((nombre != null) && (apellido!=null) && (posicion!=null) && (salario != 0) && (club != null))
@@ -68,11 +63,17 @@ namespace Lab01_EDI.Controllers
                 nuevoJugador.Posicion = posicion;
                 nuevoJugador.Salario = salario;
                 nuevoJugador.Club = club;
-                ViewBag.Mensaje = "Agregado";
                 Singleton.Instance.listaDoble.InsertarInicio(nuevoJugador);
+                ViewBag.Mensaje = "Agregado";
             }
             return View();
         }
+
+        public IActionResult Search()
+        {
+            return View(Singleton.Instance.listaDoble);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
