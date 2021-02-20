@@ -59,6 +59,38 @@
             }
         </tbody>
     }
+    @if (Singleton.Instance.listaDoble.contador > 0)
+    {
+
+        <tbody>
+            @for (int i = 0; i < Singleton.Instance.ListaCSharp.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Posicion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Singleton.Instance.ListaCSharp[i].Club)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "EliminarJugador", "Home", new { Nombre = Singleton.Instance.ListaCSharp[i].Nombre, Apellido = Singleton.Instance.ListaCSharp[i].Apellido, Posicion = Singleton.Instance.ListaCSharp[i].Posicion, Salario = Singleton.Instance.ListaCSharp[i].Salario, Club = Singleton.Instance.ListaCSharp[i].Club }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Editar", "Home", new { Nombre = Singleton.Instance.ListaCSharp[i].Nombre, Apellido = Singleton.Instance.ListaCSharp[i].Apellido, Posicion = Singleton.Instance.ListaCSharp[i].Posicion, Salario = Singleton.Instance.ListaCSharp[i].Salario, Club = Singleton.Instance.ListaCSharp[i].Club }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
 </table>
 
 @if (Singleton.Instance.listaDoble.Editar)
