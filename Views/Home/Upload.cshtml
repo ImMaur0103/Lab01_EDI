@@ -21,7 +21,7 @@
 </div>
 
 
-@if (Model.Count() > 0)
+@if (Singleton.Instance.listaDoble.contador > 0)
 {
     <p> Vista Previa archivo: </p>
 
@@ -47,23 +47,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @for (int i = 0; i < Singleton.Instance.listaDoble.contador; i++)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
+                            @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Apellido)
+                            @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Apellido)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Posicion)
+                            @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Posicion)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Salario)
+                            @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Salario)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Club)
+                            @Html.DisplayFor(modelItem => Singleton.Instance.listaDoble.ObtenerValor(i).Club)
                         </td>
                     </tr>
                 }

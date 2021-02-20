@@ -85,8 +85,8 @@ namespace Lab01_EDI.Controllers
 
         public IActionResult Upload(ListaDoble<Jugador> ListaJugador = null)
         {
-            ListaJugador = ListaJugador == null ? new  ListaDoble<Jugador>() : ListaJugador;
-            Singleton.Instance.listaDoble = ListaJugador; //es funcional            
+            if(ListaJugador.inicio != null)
+                Singleton.Instance.listaDoble = ListaJugador; //es funcional            
             return View(Singleton.Instance.listaDoble); // es funcional 
         }
     

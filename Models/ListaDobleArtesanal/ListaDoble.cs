@@ -8,7 +8,7 @@ namespace Lab01_EDI.ListaDobleArtesanal
 {
     public class ListaDoble <T> : IEnumerable <T>
     {
-        private Nodo<T> inicio = new Nodo<T>();
+        public Nodo<T> inicio = new Nodo<T>();
         private Nodo<T> fin = new Nodo<T>();
         public int contador;
 
